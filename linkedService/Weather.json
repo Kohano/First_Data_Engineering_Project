@@ -1,0 +1,14 @@
+{
+	"name": "Weather",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "Daily Weater data",
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://api.openweathermap.org",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

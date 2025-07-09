@@ -1,0 +1,16 @@
+{
+	"name": "SourceDataset_zbm",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Weather",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": "/data/2.5/forecast?q=Cologne,de&units=metric&appid=4238050112f5912b8eeff246ff8984d0"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
