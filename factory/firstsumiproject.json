@@ -1,5 +1,10 @@
 {
 	"name": "firstsumiproject",
+	"properties": {
+		"globalConfigurations": {
+			"PipelineBillingEnabled": "false"
+		}
+	},
 	"location": "germanywestcentral",
 	"identity": {
 		"type": "SystemAssigned",
