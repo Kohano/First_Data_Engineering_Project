@@ -1,0 +1,13 @@
+{
+	"name": "CityBikes_REST_LS",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://api.citybik.es/v2/networks/callabike-koln?fields=stations",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

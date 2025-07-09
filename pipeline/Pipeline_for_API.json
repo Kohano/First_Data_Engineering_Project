@@ -1,0 +1,243 @@
+{
+	"name": "Pipeline_for_API",
+	"properties": {
+		"activities": [
+			{
+				"name": "API_GET_Bike",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "networks/callabike-koln?fields=stations"
+					},
+					{
+						"name": "Destination",
+						"value": "rawdata//"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.105",
+						"requestMethod": "GET"
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"copyBehavior": "PreserveHierarchy"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['network']['stations'][0]['id']"
+								},
+								"sink": {
+									"name": "id"
+								}
+							},
+							{
+								"source": {
+									"path": "$['network']['stations'][0]['name']"
+								},
+								"sink": {
+									"name": "name"
+								}
+							},
+							{
+								"source": {
+									"path": "$['network']['stations'][0]['latitude']"
+								},
+								"sink": {
+									"name": "latitude"
+								}
+							},
+							{
+								"source": {
+									"path": "$['network']['stations'][0]['longitude']"
+								},
+								"sink": {
+									"name": "longitude"
+								}
+							},
+							{
+								"source": {
+									"path": "$['network']['stations'][0]['timestamp']"
+								},
+								"sink": {
+									"name": "timestamp"
+								}
+							},
+							{
+								"source": {
+									"path": "$['network']['stations'][0]['free_bikes']"
+								},
+								"sink": {
+									"name": "free_bikes"
+								}
+							},
+							{
+								"source": {
+									"path": "$['network']['stations'][0]['empty_slots']"
+								},
+								"sink": {
+									"name": "empty_slots"
+								}
+							},
+							{
+								"source": {
+									"path": "$['network']['stations'][0]['extra']['uid']"
+								},
+								"sink": {
+									"name": "uid"
+								}
+							},
+							{
+								"source": {
+									"path": "$['network']['stations'][0]['extra']['renting']"
+								},
+								"sink": {
+									"name": "renting"
+								}
+							},
+							{
+								"source": {
+									"path": "$['network']['stations'][0]['extra']['returning']"
+								},
+								"sink": {
+									"name": "returning"
+								}
+							},
+							{
+								"source": {
+									"path": "$['network']['stations'][0]['extra']['last_updated']"
+								},
+								"sink": {
+									"name": "last_updated"
+								}
+							},
+							{
+								"source": {
+									"path": "$['network']['stations'][0]['extra']['slots']"
+								},
+								"sink": {
+									"name": "slots"
+								}
+							},
+							{
+								"source": {
+									"path": "$['network']['stations'][0]['extra']['normal_bikes']"
+								},
+								"sink": {
+									"name": "normal_bikes"
+								}
+							},
+							{
+								"source": {
+									"path": "$['network']['stations'][0]['extra']['rental_uris']['android']"
+								},
+								"sink": {
+									"name": "android"
+								}
+							},
+							{
+								"source": {
+									"path": "$['network']['stations'][0]['extra']['rental_uris']['ios']"
+								},
+								"sink": {
+									"name": "ios"
+								}
+							},
+							{
+								"source": {
+									"path": "$['network']['stations'][0]['extra']['virtual']"
+								},
+								"sink": {
+									"name": "virtual"
+								}
+							}
+						],
+						"collectionReference": "$['network']['stations']",
+						"mapComplexValuesToString": false
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_lm5",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Parquet1",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Weather_GET",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "source",
+						"value": "/data/2.5/forecast?q=Cologne,de&units=metric&appid=4238050112f5912b8eeff246ff8984d0"
+					},
+					{
+						"name": "Destination",
+						"value": "rawdata//Weather"
+					}
+				],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Weather_GET",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Notebook1",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Users/sumiyabaza.g@gso.schule.koeln/Untitled Notebook 2025-07-09 10:38:37"
+				},
+				"linkedServiceName": {
+					"referenceName": "Data_Transformation",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2025-07-09T08:58:33Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

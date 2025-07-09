@@ -1,0 +1,21 @@
+{
+	"name": "DestinationDataset_zbm",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "bronze",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Weather",
+				"container": "rawdata"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

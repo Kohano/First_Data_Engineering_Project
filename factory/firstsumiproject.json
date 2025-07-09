@@ -1,0 +1,9 @@
+{
+	"name": "firstsumiproject",
+	"location": "germanywestcentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "cd94b5dc-e748-4f11-8dcb-204a1fbc92e6",
+		"tenantId": "e871756f-ec38-47cb-97bb-83c7310054d5"
+	}
+}
