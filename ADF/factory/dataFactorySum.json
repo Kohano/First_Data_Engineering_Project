@@ -1,0 +1,9 @@
+{
+	"name": "dataFactorySum",
+	"location": "germanywestcentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "6ed61fad-5d06-4ac2-a759-a239bf68af02",
+		"tenantId": "20afac9e-38e3-49ff-96f9-e96e9e51d5d8"
+	}
+}
