@@ -62,22 +62,6 @@
 							},
 							{
 								"source": {
-									"path": "$['network']['stations'][0]['latitude']"
-								},
-								"sink": {
-									"name": "latitude"
-								}
-							},
-							{
-								"source": {
-									"path": "$['network']['stations'][0]['longitude']"
-								},
-								"sink": {
-									"name": "longitude"
-								}
-							},
-							{
-								"source": {
 									"path": "$['network']['stations'][0]['timestamp']"
 								},
 								"sink": {
@@ -147,30 +131,6 @@
 								"sink": {
 									"name": "normal_bikes"
 								}
-							},
-							{
-								"source": {
-									"path": "$['network']['stations'][0]['extra']['rental_uris']['android']"
-								},
-								"sink": {
-									"name": "android"
-								}
-							},
-							{
-								"source": {
-									"path": "$['network']['stations'][0]['extra']['rental_uris']['ios']"
-								},
-								"sink": {
-									"name": "ios"
-								}
-							},
-							{
-								"source": {
-									"path": "$['network']['stations'][0]['extra']['virtual']"
-								},
-								"sink": {
-									"name": "virtual"
-								}
 							}
 						],
 						"collectionReference": "$['network']['stations']",
@@ -179,7 +139,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_lm5",
+						"referenceName": "Bike_Souce",
 						"type": "DatasetReference"
 					}
 				],

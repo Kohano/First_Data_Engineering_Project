@@ -1,5 +1,5 @@
 {
-	"name": "SourceDataset_lm5",
+	"name": "Bike_Souce",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Bike",
@@ -8,7 +8,7 @@
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "networks/callabike-koln?fields=stations"
+			"relativeUrl": ""
 		},
 		"schema": []
 	},

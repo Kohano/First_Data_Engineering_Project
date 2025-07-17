@@ -1,5 +1,5 @@
 {
-	"name": "SourceDataset_zbm",
+	"name": "WeatherSource",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Weather",
@@ -8,7 +8,7 @@
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
-			"relativeUrl": "/data/2.5/forecast?q=Cologne,de&units=metric&appid=4238050112f5912b8eeff246ff8984d0"
+			"relativeUrl": ""
 		},
 		"schema": []
 	},

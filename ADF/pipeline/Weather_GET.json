@@ -28,7 +28,10 @@
 						"type": "RestSource",
 						"httpRequestTimeout": "00:01:40",
 						"requestInterval": "00.00:00:00.010",
-						"requestMethod": "GET"
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
 					},
 					"sink": {
 						"type": "ParquetSink",
@@ -45,39 +48,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['cod']"
-								},
-								"sink": {
-									"name": "cod"
-								}
-							},
-							{
-								"source": {
-									"path": "$['message']"
-								},
-								"sink": {
-									"name": "message"
-								}
-							},
-							{
-								"source": {
-									"path": "$['cnt']"
-								},
-								"sink": {
-									"name": "cnt"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['dt']"
-								},
-								"sink": {
-									"name": "dt"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['main']['temp']"
+									"path": "['main']['temp']"
 								},
 								"sink": {
 									"name": "temp"
@@ -85,7 +56,7 @@
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['main']['feels_like']"
+									"path": "['main']['feels_like']"
 								},
 								"sink": {
 									"name": "feels_like"
@@ -93,7 +64,7 @@
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['main']['temp_min']"
+									"path": "['main']['temp_min']"
 								},
 								"sink": {
 									"name": "temp_min"
@@ -101,7 +72,7 @@
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['main']['temp_max']"
+									"path": "['main']['temp_max']"
 								},
 								"sink": {
 									"name": "temp_max"
@@ -109,111 +80,7 @@
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['main']['pressure']"
-								},
-								"sink": {
-									"name": "pressure"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['main']['sea_level']"
-								},
-								"sink": {
-									"name": "sea_level"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['main']['grnd_level']"
-								},
-								"sink": {
-									"name": "grnd_level"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['main']['humidity']"
-								},
-								"sink": {
-									"name": "humidity"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['main']['temp_kf']"
-								},
-								"sink": {
-									"name": "temp_kf"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['weather'][0]['id']"
-								},
-								"sink": {
-									"name": "list'][0]['weather'][0]['id"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['weather'][0]['main']"
-								},
-								"sink": {
-									"name": "main"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['weather'][0]['description']"
-								},
-								"sink": {
-									"name": "description"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['weather'][0]['icon']"
-								},
-								"sink": {
-									"name": "icon"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['clouds']['all']"
-								},
-								"sink": {
-									"name": "all"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['wind']['speed']"
-								},
-								"sink": {
-									"name": "speed"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['wind']['deg']"
-								},
-								"sink": {
-									"name": "deg"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['wind']['gust']"
-								},
-								"sink": {
-									"name": "gust"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['visibility']"
+									"path": "['visibility']"
 								},
 								"sink": {
 									"name": "visibility"
@@ -221,23 +88,7 @@
 							},
 							{
 								"source": {
-									"path": "$['list'][0]['pop']"
-								},
-								"sink": {
-									"name": "pop"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['sys']['pod']"
-								},
-								"sink": {
-									"name": "pod"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['dt_txt']"
+									"path": "['dt_txt']"
 								},
 								"sink": {
 									"name": "dt_txt"
@@ -257,22 +108,6 @@
 								},
 								"sink": {
 									"name": "name"
-								}
-							},
-							{
-								"source": {
-									"path": "$['city']['coord']['lat']"
-								},
-								"sink": {
-									"name": "lat"
-								}
-							},
-							{
-								"source": {
-									"path": "$['city']['coord']['lon']"
-								},
-								"sink": {
-									"name": "lon"
 								}
 							},
 							{
@@ -321,7 +156,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_zbm",
+						"referenceName": "WeatherSource",
 						"type": "DatasetReference"
 					}
 				],
