@@ -231,7 +231,7 @@
 					"notebookPath": "/Users/sumiyabaza.g@gso.schule.koeln/Untitled Notebook 2025-07-09 10:38:37"
 				},
 				"linkedServiceName": {
-					"referenceName": "Data_Transformation",
+					"referenceName": "AzureDatabricks1",
 					"type": "LinkedServiceReference"
 				}
 			}
