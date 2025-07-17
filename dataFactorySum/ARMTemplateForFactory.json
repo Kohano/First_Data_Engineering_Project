@@ -86,7 +86,7 @@
 								"mappings": [
 									{
 										"source": {
-											"path": "$['network']['stations'][0]['id']"
+											"path": "[['id']"
 										},
 										"sink": {
 											"name": "id"
@@ -94,7 +94,7 @@
 									},
 									{
 										"source": {
-											"path": "$['network']['stations'][0]['name']"
+											"path": "[['name']"
 										},
 										"sink": {
 											"name": "name"
@@ -102,7 +102,7 @@
 									},
 									{
 										"source": {
-											"path": "$['network']['stations'][0]['timestamp']"
+											"path": "[['timestamp']"
 										},
 										"sink": {
 											"name": "timestamp"
@@ -110,7 +110,7 @@
 									},
 									{
 										"source": {
-											"path": "$['network']['stations'][0]['free_bikes']"
+											"path": "[['free_bikes']"
 										},
 										"sink": {
 											"name": "free_bikes"
@@ -118,7 +118,7 @@
 									},
 									{
 										"source": {
-											"path": "$['network']['stations'][0]['empty_slots']"
+											"path": "[['empty_slots']"
 										},
 										"sink": {
 											"name": "empty_slots"
@@ -126,7 +126,7 @@
 									},
 									{
 										"source": {
-											"path": "$['network']['stations'][0]['extra']['uid']"
+											"path": "[['extra']['uid']"
 										},
 										"sink": {
 											"name": "uid"
@@ -134,7 +134,7 @@
 									},
 									{
 										"source": {
-											"path": "$['network']['stations'][0]['extra']['renting']"
+											"path": "[['extra']['renting']"
 										},
 										"sink": {
 											"name": "renting"
@@ -142,7 +142,7 @@
 									},
 									{
 										"source": {
-											"path": "$['network']['stations'][0]['extra']['returning']"
+											"path": "[['extra']['returning']"
 										},
 										"sink": {
 											"name": "returning"
@@ -150,7 +150,7 @@
 									},
 									{
 										"source": {
-											"path": "$['network']['stations'][0]['extra']['last_updated']"
+											"path": "[['extra']['last_updated']"
 										},
 										"sink": {
 											"name": "last_updated"
@@ -158,7 +158,7 @@
 									},
 									{
 										"source": {
-											"path": "$['network']['stations'][0]['extra']['slots']"
+											"path": "[['extra']['slots']"
 										},
 										"sink": {
 											"name": "slots"
@@ -166,7 +166,7 @@
 									},
 									{
 										"source": {
-											"path": "$['network']['stations'][0]['extra']['normal_bikes']"
+											"path": "[['extra']['normal_bikes']"
 										},
 										"sink": {
 											"name": "normal_bikes"
@@ -221,6 +221,8 @@
 					{
 						"name": "Notebook1",
 						"type": "DatabricksNotebook",
+						"state": "Inactive",
+						"onInactiveMarkAs": "Succeeded",
 						"dependsOn": [],
 						"policy": {
 							"timeout": "0.12:00:00",
