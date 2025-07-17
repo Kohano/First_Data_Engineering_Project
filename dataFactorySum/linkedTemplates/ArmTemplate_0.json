@@ -1,0 +1,657 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "dataFactorySum"
+		},
+		"AzureDatabricks1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
+		},
+		"bronze_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'bronze'"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://apikeysu.vault.azure.net/secrets/databrick/b7c0b8431de04ea5a1689e8ae94249b0"
+		},
+		"Bike_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://api.citybik.es/v2/networks/callabike-koln?fields=stations"
+		},
+		"CityBikes_REST_LS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://api.citybik.es/v2/networks/callabike-koln?fields=stations"
+		},
+		"Weather_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://api.openweathermap.org/data/2.5/forecast?q=Cologne,de&units=metric&appid=4238050112f5912b8eeff246ff8984d0"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricks1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-3555635080506506.6.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDatabricks1_accessToken')]"
+					},
+					"newClusterNodeType": "Standard_DS3_v2",
+					"newClusterNumOfWorker": "1",
+					"newClusterSparkEnvVars": {
+						"PYSPARK_PYTHON": "/databricks/python3/bin/python3"
+					},
+					"newClusterVersion": "16.4.x-scala2.13",
+					"clusterOption": "Fixed",
+					"newClusterInitScripts": []
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureKeyVault1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Bike')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('Bike_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": false,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/CityBikes_REST_LS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('CityBikes_REST_LS_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Weather')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Daily Weater data",
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('Weather_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/bronze')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('bronze_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Bike_Souce')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Bike",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": ""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Bike')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_lm5')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "bronze",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "bronze"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/bronze')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_zbm')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "bronze",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Weather",
+						"folderPath": "WeatherFolder",
+						"container": "rawdata"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/bronze')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Parquet1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "bronze",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "data_5ca5677c-97ef-40b0-b12b-5a90e729c8d1_0432823a-3559-4d8e-8bd6-4fd3eb72c172.parquet",
+						"folderPath": "BikeData",
+						"container": "rawdata"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/bronze')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/WeatherSource')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Weather",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": ""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Weather')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Weather_GET')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy_zbm",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "/data/2.5/forecast?q=Cologne,de&units=metric&appid=4238050112f5912b8eeff246ff8984d0"
+							},
+							{
+								"name": "Destination",
+								"value": "rawdata//Weather"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"supportRFC5988": "true"
+								}
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "[['main']['temp']"
+										},
+										"sink": {
+											"name": "temp"
+										}
+									},
+									{
+										"source": {
+											"path": "[['main']['feels_like']"
+										},
+										"sink": {
+											"name": "feels_like"
+										}
+									},
+									{
+										"source": {
+											"path": "[['main']['temp_min']"
+										},
+										"sink": {
+											"name": "temp_min"
+										}
+									},
+									{
+										"source": {
+											"path": "[['main']['temp_max']"
+										},
+										"sink": {
+											"name": "temp_max"
+										}
+									},
+									{
+										"source": {
+											"path": "[['visibility']"
+										},
+										"sink": {
+											"name": "visibility"
+										}
+									},
+									{
+										"source": {
+											"path": "[['dt_txt']"
+										},
+										"sink": {
+											"name": "dt_txt"
+										}
+									},
+									{
+										"source": {
+											"path": "$['city']['id']"
+										},
+										"sink": {
+											"name": "city_id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['city']['name']"
+										},
+										"sink": {
+											"name": "name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['city']['country']"
+										},
+										"sink": {
+											"name": "country"
+										}
+									},
+									{
+										"source": {
+											"path": "$['city']['population']"
+										},
+										"sink": {
+											"name": "population"
+										}
+									},
+									{
+										"source": {
+											"path": "$['city']['timezone']"
+										},
+										"sink": {
+											"name": "timezone"
+										}
+									},
+									{
+										"source": {
+											"path": "$['city']['sunrise']"
+										},
+										"sink": {
+											"name": "sunrise"
+										}
+									},
+									{
+										"source": {
+											"path": "$['city']['sunset']"
+										},
+										"sink": {
+											"name": "sunset"
+										}
+									}
+								],
+								"collectionReference": "$['list']"
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "WeatherSource",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DestinationDataset_zbm",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2025-07-08T09:40:45Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/WeatherSource')]",
+				"[concat(variables('factoryId'), '/datasets/DestinationDataset_zbm')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Pipeline_for_API')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "API_GET_Bike",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "networks/callabike-koln?fields=stations"
+							},
+							{
+								"name": "Destination",
+								"value": "rawdata//"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.105",
+								"requestMethod": "GET"
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings",
+									"copyBehavior": "PreserveHierarchy"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['network']['stations'][0]['id']"
+										},
+										"sink": {
+											"name": "id"
+										}
+									},
+									{
+										"source": {
+											"path": "$['network']['stations'][0]['name']"
+										},
+										"sink": {
+											"name": "name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['network']['stations'][0]['timestamp']"
+										},
+										"sink": {
+											"name": "timestamp"
+										}
+									},
+									{
+										"source": {
+											"path": "$['network']['stations'][0]['free_bikes']"
+										},
+										"sink": {
+											"name": "free_bikes"
+										}
+									},
+									{
+										"source": {
+											"path": "$['network']['stations'][0]['empty_slots']"
+										},
+										"sink": {
+											"name": "empty_slots"
+										}
+									},
+									{
+										"source": {
+											"path": "$['network']['stations'][0]['extra']['uid']"
+										},
+										"sink": {
+											"name": "uid"
+										}
+									},
+									{
+										"source": {
+											"path": "$['network']['stations'][0]['extra']['renting']"
+										},
+										"sink": {
+											"name": "renting"
+										}
+									},
+									{
+										"source": {
+											"path": "$['network']['stations'][0]['extra']['returning']"
+										},
+										"sink": {
+											"name": "returning"
+										}
+									},
+									{
+										"source": {
+											"path": "$['network']['stations'][0]['extra']['last_updated']"
+										},
+										"sink": {
+											"name": "last_updated"
+										}
+									},
+									{
+										"source": {
+											"path": "$['network']['stations'][0]['extra']['slots']"
+										},
+										"sink": {
+											"name": "slots"
+										}
+									},
+									{
+										"source": {
+											"path": "$['network']['stations'][0]['extra']['normal_bikes']"
+										},
+										"sink": {
+											"name": "normal_bikes"
+										}
+									}
+								],
+								"collectionReference": "$['network']['stations']",
+								"mapComplexValuesToString": false
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "Bike_Souce",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Parquet1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Weather_GET",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"policy": {
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "source",
+								"value": "/data/2.5/forecast?q=Cologne,de&units=metric&appid=4238050112f5912b8eeff246ff8984d0"
+							},
+							{
+								"name": "Destination",
+								"value": "rawdata//Weather"
+							}
+						],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "Weather_GET",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "Notebook1",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/sumiyabaza.g@gso.schule.koeln/Untitled Notebook 2025-07-09 10:38:37"
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricks1",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": [],
+				"lastPublishTime": "2025-07-09T08:58:33Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/Bike_Souce')]",
+				"[concat(variables('factoryId'), '/datasets/Parquet1')]",
+				"[concat(variables('factoryId'), '/pipelines/Weather_GET')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks1')]"
+			]
+		}
+	]
+}

@@ -1,0 +1,84 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "dataFactorySum"
+		},
+		"AzureDatabricks1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
+		},
+		"bronze_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'bronze'"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://apikeysu.vault.azure.net/secrets/databrick/b7c0b8431de04ea5a1689e8ae94249b0"
+		},
+		"Bike_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://api.citybik.es/v2/networks/callabike-koln?fields=stations"
+		},
+		"CityBikes_REST_LS_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://api.citybik.es/v2/networks/callabike-koln?fields=stations"
+		},
+		"Weather_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://api.openweathermap.org/data/2.5/forecast?q=Cologne,de&units=metric&appid=4238050112f5912b8eeff246ff8984d0"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "dataFactorySum_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureDatabricks1_accessToken": {
+						"value": "[parameters('AzureDatabricks1_accessToken')]"
+					},
+					"bronze_connectionString": {
+						"value": "[parameters('bronze_connectionString')]"
+					},
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					},
+					"Bike_properties_typeProperties_url": {
+						"value": "[parameters('Bike_properties_typeProperties_url')]"
+					},
+					"CityBikes_REST_LS_properties_typeProperties_url": {
+						"value": "[parameters('CityBikes_REST_LS_properties_typeProperties_url')]"
+					},
+					"Weather_properties_typeProperties_url": {
+						"value": "[parameters('Weather_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
