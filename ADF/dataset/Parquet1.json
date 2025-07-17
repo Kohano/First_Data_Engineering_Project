@@ -10,6 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "data_5ca5677c-97ef-40b0-b12b-5a90e729c8d1_0432823a-3559-4d8e-8bd6-4fd3eb72c172.parquet",
+				"folderPath": "BikeData",
 				"container": "rawdata"
 			},
 			"compressionCodec": "snappy"

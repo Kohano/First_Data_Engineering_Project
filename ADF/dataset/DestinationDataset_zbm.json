@@ -11,6 +11,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "Weather",
+				"folderPath": "WeatherFolder",
 				"container": "rawdata"
 			},
 			"compressionCodec": "snappy"
