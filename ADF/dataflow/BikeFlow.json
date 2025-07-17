@@ -3,26 +3,11 @@
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
-			"sources": [
-				{
-					"dataset": {
-						"referenceName": "Bike_Souce",
-						"type": "DatasetReference"
-					},
-					"name": "Bike"
-				}
-			],
+			"sources": [],
 			"sinks": [],
 			"transformations": [],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     limit: 100,",
-				"     httpMethod: 'GET',",
-				"     timeout: 30,",
-				"     requestInterval: 0,",
-				"     paginationRules: ['supportRFC5988' -> 'true'],",
-				"     responseFormat: ['type' -> 'json', 'documentForm' -> 'singleDocument']) ~> Bike"
+				""
 			]
 		}
 	}
