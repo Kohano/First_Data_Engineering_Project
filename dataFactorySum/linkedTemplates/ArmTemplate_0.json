@@ -304,6 +304,14 @@
 								"mappings": [
 									{
 										"source": {
+											"path": "[['dt']"
+										},
+										"sink": {
+											"name": "dt"
+										}
+									},
+									{
+										"source": {
 											"path": "[['main']['temp']"
 										},
 										"sink": {
@@ -336,6 +344,78 @@
 									},
 									{
 										"source": {
+											"path": "[['main']['pressure']"
+										},
+										"sink": {
+											"name": "pressure"
+										}
+									},
+									{
+										"source": {
+											"path": "[['main']['sea_level']"
+										},
+										"sink": {
+											"name": "sea_level"
+										}
+									},
+									{
+										"source": {
+											"path": "[['main']['grnd_level']"
+										},
+										"sink": {
+											"name": "grnd_level"
+										}
+									},
+									{
+										"source": {
+											"path": "[['main']['humidity']"
+										},
+										"sink": {
+											"name": "humidity"
+										}
+									},
+									{
+										"source": {
+											"path": "[['main']['temp_kf']"
+										},
+										"sink": {
+											"name": "temp_kf"
+										}
+									},
+									{
+										"source": {
+											"path": "[['clouds']['all']"
+										},
+										"sink": {
+											"name": "all"
+										}
+									},
+									{
+										"source": {
+											"path": "[['wind']['speed']"
+										},
+										"sink": {
+											"name": "speed"
+										}
+									},
+									{
+										"source": {
+											"path": "[['wind']['deg']"
+										},
+										"sink": {
+											"name": "deg"
+										}
+									},
+									{
+										"source": {
+											"path": "[['wind']['gust']"
+										},
+										"sink": {
+											"name": "gust"
+										}
+									},
+									{
+										"source": {
 											"path": "[['visibility']"
 										},
 										"sink": {
@@ -344,10 +424,58 @@
 									},
 									{
 										"source": {
+											"path": "[['pop']"
+										},
+										"sink": {
+											"name": "pop"
+										}
+									},
+									{
+										"source": {
+											"path": "[['rain']['3h']"
+										},
+										"sink": {
+											"name": "3h"
+										}
+									},
+									{
+										"source": {
+											"path": "[['sys']['pod']"
+										},
+										"sink": {
+											"name": "pod"
+										}
+									},
+									{
+										"source": {
 											"path": "[['dt_txt']"
 										},
 										"sink": {
 											"name": "dt_txt"
+										}
+									},
+									{
+										"source": {
+											"path": "$['cod']"
+										},
+										"sink": {
+											"name": "cod"
+										}
+									},
+									{
+										"source": {
+											"path": "$['message']"
+										},
+										"sink": {
+											"name": "message"
+										}
+									},
+									{
+										"source": {
+											"path": "$['cnt']"
+										},
+										"sink": {
+											"name": "cnt"
 										}
 									},
 									{
@@ -364,6 +492,22 @@
 										},
 										"sink": {
 											"name": "name"
+										}
+									},
+									{
+										"source": {
+											"path": "$['city']['coord']['lat']"
+										},
+										"sink": {
+											"name": "lat"
+										}
+									},
+									{
+										"source": {
+											"path": "$['city']['coord']['lon']"
+										},
+										"sink": {
+											"name": "lon"
 										}
 									},
 									{
@@ -503,6 +647,22 @@
 									},
 									{
 										"source": {
+											"path": "[['latitude']"
+										},
+										"sink": {
+											"name": "latitude"
+										}
+									},
+									{
+										"source": {
+											"path": "[['longitude']"
+										},
+										"sink": {
+											"name": "longitude"
+										}
+									},
+									{
+										"source": {
 											"path": "[['timestamp']"
 										},
 										"sink": {
@@ -571,6 +731,30 @@
 										},
 										"sink": {
 											"name": "normal_bikes"
+										}
+									},
+									{
+										"source": {
+											"path": "[['extra']['rental_uris']['android']"
+										},
+										"sink": {
+											"name": "android"
+										}
+									},
+									{
+										"source": {
+											"path": "[['extra']['rental_uris']['ios']"
+										},
+										"sink": {
+											"name": "ios"
+										}
+									},
+									{
+										"source": {
+											"path": "[['extra']['virtual']"
+										},
+										"sink": {
+											"name": "virtual"
 										}
 									}
 								],
