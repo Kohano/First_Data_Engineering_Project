@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "API_GET_Bike",
+				"name": "API_GET_Bikes",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
