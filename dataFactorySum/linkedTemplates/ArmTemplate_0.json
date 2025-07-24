@@ -194,7 +194,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "Weather",
+						"fileName": "WeatherData",
 						"folderPath": "WeatherFolder",
 						"container": "rawdata"
 					},
@@ -220,7 +220,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "data_5ca5677c-97ef-40b0-b12b-5a90e729c8d1_0432823a-3559-4d8e-8bd6-4fd3eb72c172.parquet",
+						"fileName": "BikeData",
 						"folderPath": "BikeData",
 						"container": "rawdata"
 					},
@@ -276,7 +276,7 @@
 							},
 							{
 								"name": "Destination",
-								"value": "rawdata//Weather"
+								"value": "rawdata//WeatherData"
 							}
 						],
 						"typeProperties": {
@@ -427,15 +427,8 @@
 											"path": "[['pop']"
 										},
 										"sink": {
-											"name": "pop"
-										}
-									},
-									{
-										"source": {
-											"path": "[['rain']['3h']"
-										},
-										"sink": {
-											"name": "3h"
+											"name": "pop",
+											"type": "Double"
 										}
 									},
 									{
@@ -605,7 +598,7 @@
 							},
 							{
 								"name": "Destination",
-								"value": "rawdata//"
+								"value": "rawdata/BikeData"
 							}
 						],
 						"typeProperties": {
@@ -804,7 +797,7 @@
 						}
 					},
 					{
-						"name": "Notebook1",
+						"name": "Transformation_layer",
 						"type": "DatabricksNotebook",
 						"state": "Inactive",
 						"onInactiveMarkAs": "Succeeded",
@@ -818,7 +811,7 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Users/sumiyabaza.g@gso.schule.koeln/Untitled Notebook 2025-07-09 10:38:37"
+							"notebookPath": "/Users/sumyabazar1235@gmail.com/First_Data_Engineering_Project/Databrick/Bronze Layer"
 						},
 						"linkedServiceName": {
 							"referenceName": "AzureDatabricks1",
