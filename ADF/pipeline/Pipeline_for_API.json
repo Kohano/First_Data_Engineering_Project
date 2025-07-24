@@ -5,6 +5,8 @@
 			{
 				"name": "API_GET_Bikes",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -20,7 +22,7 @@
 					},
 					{
 						"name": "Destination",
-						"value": "rawdata//"
+						"value": "rawdata/BikeData"
 					}
 				],
 				"typeProperties": {
@@ -216,7 +218,7 @@
 				}
 			},
 			{
-				"name": "Notebook1",
+				"name": "Transformation_layer",
 				"type": "DatabricksNotebook",
 				"state": "Inactive",
 				"onInactiveMarkAs": "Succeeded",
@@ -230,7 +232,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/sumiyabaza.g@gso.schule.koeln/Untitled Notebook 2025-07-09 10:38:37"
+					"notebookPath": "/Users/sumyabazar1235@gmail.com/First_Data_Engineering_Project/Databrick/Bronze Layer"
 				},
 				"linkedServiceName": {
 					"referenceName": "AzureDatabricks1",

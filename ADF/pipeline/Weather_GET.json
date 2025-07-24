@@ -20,7 +20,7 @@
 					},
 					{
 						"name": "Destination",
-						"value": "rawdata//Weather"
+						"value": "rawdata//WeatherData"
 					}
 				],
 				"typeProperties": {
@@ -171,15 +171,8 @@
 									"path": "['pop']"
 								},
 								"sink": {
-									"name": "pop"
-								}
-							},
-							{
-								"source": {
-									"path": "['rain']['3h']"
-								},
-								"sink": {
-									"name": "3h"
+									"name": "pop",
+									"type": "Double"
 								}
 							},
 							{
