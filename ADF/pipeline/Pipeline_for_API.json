@@ -62,6 +62,22 @@
 							},
 							{
 								"source": {
+									"path": "['latitude']"
+								},
+								"sink": {
+									"name": "latitude"
+								}
+							},
+							{
+								"source": {
+									"path": "['longitude']"
+								},
+								"sink": {
+									"name": "longitude"
+								}
+							},
+							{
+								"source": {
 									"path": "['timestamp']"
 								},
 								"sink": {
@@ -130,6 +146,30 @@
 								},
 								"sink": {
 									"name": "normal_bikes"
+								}
+							},
+							{
+								"source": {
+									"path": "['extra']['rental_uris']['android']"
+								},
+								"sink": {
+									"name": "android"
+								}
+							},
+							{
+								"source": {
+									"path": "['extra']['rental_uris']['ios']"
+								},
+								"sink": {
+									"name": "ios"
+								}
+							},
+							{
+								"source": {
+									"path": "['extra']['virtual']"
+								},
+								"sink": {
+									"name": "virtual"
 								}
 							}
 						],
