@@ -1,0 +1,16 @@
+{
+	"name": "Bike_Source_Binery",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Bike_Source_HTTP",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			}
+		}
+	}
+}

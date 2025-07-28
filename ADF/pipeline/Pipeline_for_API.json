@@ -25,10 +25,14 @@
 				],
 				"typeProperties": {
 					"source": {
-						"type": "RestSource",
-						"httpRequestTimeout": "00:01:40",
-						"requestInterval": "00.00:00:00.105",
-						"requestMethod": "GET"
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
 					},
 					"sink": {
 						"type": "ParquetSink",
@@ -40,146 +44,11 @@
 							"type": "ParquetWriteSettings"
 						}
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"path": "['id']"
-								},
-								"sink": {
-									"name": "id"
-								}
-							},
-							{
-								"source": {
-									"path": "['name']"
-								},
-								"sink": {
-									"name": "name"
-								}
-							},
-							{
-								"source": {
-									"path": "['latitude']"
-								},
-								"sink": {
-									"name": "latitude"
-								}
-							},
-							{
-								"source": {
-									"path": "['longitude']"
-								},
-								"sink": {
-									"name": "longitude"
-								}
-							},
-							{
-								"source": {
-									"path": "['timestamp']"
-								},
-								"sink": {
-									"name": "timestamp"
-								}
-							},
-							{
-								"source": {
-									"path": "['free_bikes']"
-								},
-								"sink": {
-									"name": "free_bikes"
-								}
-							},
-							{
-								"source": {
-									"path": "['empty_slots']"
-								},
-								"sink": {
-									"name": "empty_slots"
-								}
-							},
-							{
-								"source": {
-									"path": "['extra']['uid']"
-								},
-								"sink": {
-									"name": "uid"
-								}
-							},
-							{
-								"source": {
-									"path": "['extra']['renting']"
-								},
-								"sink": {
-									"name": "renting"
-								}
-							},
-							{
-								"source": {
-									"path": "['extra']['returning']"
-								},
-								"sink": {
-									"name": "returning"
-								}
-							},
-							{
-								"source": {
-									"path": "['extra']['last_updated']"
-								},
-								"sink": {
-									"name": "last_updated"
-								}
-							},
-							{
-								"source": {
-									"path": "['extra']['slots']"
-								},
-								"sink": {
-									"name": "slots"
-								}
-							},
-							{
-								"source": {
-									"path": "['extra']['normal_bikes']"
-								},
-								"sink": {
-									"name": "normal_bikes"
-								}
-							},
-							{
-								"source": {
-									"path": "['extra']['rental_uris']['android']"
-								},
-								"sink": {
-									"name": "android"
-								}
-							},
-							{
-								"source": {
-									"path": "['extra']['rental_uris']['ios']"
-								},
-								"sink": {
-									"name": "ios"
-								}
-							},
-							{
-								"source": {
-									"path": "['extra']['virtual']"
-								},
-								"sink": {
-									"name": "virtual"
-								}
-							}
-						],
-						"collectionReference": "$['network']['stations']",
-						"mapComplexValuesToString": false
-					}
+					"enableStaging": false
 				},
 				"inputs": [
 					{
-						"referenceName": "Bike_Souce",
+						"referenceName": "Bike_Source_Binery",
 						"type": "DatasetReference"
 					}
 				],
@@ -193,6 +62,8 @@
 			{
 				"name": "Weather_GET",
 				"type": "ExecutePipeline",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [],
 				"policy": {
 					"secureInput": false
@@ -236,31 +107,6 @@
 					"referenceName": "AzureDatabricks1",
 					"type": "LinkedServiceReference"
 				}
-			},
-			{
-				"name": "Web1",
-				"type": "WebActivity",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": []
-			},
-			{
-				"name": "Fail1",
-				"type": "Fail",
-				"dependsOn": [],
-				"userProperties": []
-			},
-			{
-				"name": "If Condition1",
-				"type": "IfCondition",
-				"dependsOn": [],
-				"userProperties": []
 			}
 		],
 		"annotations": [],

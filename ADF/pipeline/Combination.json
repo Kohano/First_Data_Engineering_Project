@@ -1,0 +1,28 @@
+{
+	"name": "Combination",
+	"properties": {
+		"activities": [
+			{
+				"name": "CheckLastMonthData",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": {
+						"value": "@concat(\n  'https://data.citybik.es/dumps/by-network/',\n  formatDateTime(addDays(utcNow(), -30), 'yyyy'),\n  '/',\n  formatDateTime(addDays(utcNow(), -30), 'yyyyMM'),\n  '-velib-stats.parquet'\n)\n",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
+}

@@ -5,6 +5,11 @@
 			"referenceName": "Bike",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"OnFail": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"typeProperties": {
