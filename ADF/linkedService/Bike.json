@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://api.citybik.es/v2/networks/callabike-koln?fields=stations",
+			"url": "@{concat('https://data.citybik.es/dumps/by-network/', formatDateTime(addMonths(utcNow(), -1), 'yyyy'), '/', formatDateTime(addMonths(utcNow(), -1), 'yyyyMM'), '-velib-stats.parquet')\n}",
 			"enableServerCertificateValidation": false,
 			"authenticationType": "Anonymous"
 		}
