@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "@{concat(\n  'https://data.citybik.es/dumps/by-network/',\n  formatDateTime(addDays(utcNow(), -30), 'yyyy'),\n  '/',\n  formatDateTime(addDays(utcNow(), -30), 'yyyyMM'),\n  '-velib-stats.parquet'\n)\n}",
+			"url": "@{concat(\n  'https://data.citybik.es/dumps/by-network/',\n  formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyy'),\n  '/',\n  formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyyMM'),\n  '-velib-stats.parquet'\n)}",
 			"enableServerCertificateValidation": false,
 			"authenticationType": "Anonymous"
 		}
