@@ -1,0 +1,212 @@
+{
+  "datasets": [
+    {
+      "name": "761fe30c",
+      "displayName": "bike_weather_combined",
+      "queryLines": [
+        "SELECT * FROM new_transformer.gold.bike_weather_combined"
+      ],
+      "catalog": "new_transformer",
+      "schema": "gold"
+    }
+  ],
+  "pages": [
+    {
+      "name": "513f452c",
+      "displayName": "Untitled page",
+      "layout": [
+        {
+          "widget": {
+            "name": "796e09ee",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "761fe30c",
+                  "fields": [
+                    {
+                      "name": "bike_station_name",
+                      "expression": "`bike_station_name`"
+                    },
+                    {
+                      "name": "latitude",
+                      "expression": "`latitude`"
+                    },
+                    {
+                      "name": "longitude",
+                      "expression": "`longitude`"
+                    },
+                    {
+                      "name": "renting",
+                      "expression": "`renting`"
+                    },
+                    {
+                      "name": "max(normal_bikes)",
+                      "expression": "MAX(`normal_bikes`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "symbol-map",
+              "encodings": {
+                "coordinates": {
+                  "latitude": {
+                    "fieldName": "latitude",
+                    "displayName": "latitude"
+                  },
+                  "longitude": {
+                    "fieldName": "longitude",
+                    "displayName": "longitude"
+                  }
+                },
+                "color": {
+                  "fieldName": "bike_station_name",
+                  "scale": {
+                    "type": "categorical"
+                  },
+                  "displayName": "bike_station_name"
+                },
+                "size": {
+                  "fieldName": "max(normal_bikes)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Maximum normal_bikes"
+                },
+                "extra": [
+                  {
+                    "fieldName": "renting",
+                    "displayName": "renting"
+                  }
+                ]
+              },
+              "frame": {
+                "showDescription": false,
+                "title": "Bike and Weather Data Point Map",
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "40f41e2a",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "761fe30c",
+                  "fields": [
+                    {
+                      "name": "bike_station_name",
+                      "expression": "`bike_station_name`"
+                    },
+                    {
+                      "name": "country",
+                      "expression": "`country`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 1,
+              "widgetType": "choropleth-map",
+              "encodings": {
+                "color": {
+                  "fieldName": "bike_station_name",
+                  "scale": {
+                    "type": "categorical"
+                  },
+                  "displayName": "bike_station_name"
+                },
+                "region": {
+                  "regionType": "mapbox-v4-admin",
+                  "admin0": {
+                    "fieldName": "country",
+                    "type": "field",
+                    "geographicRole": "admin0-unit-code",
+                    "displayName": "country"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 0,
+            "width": 3,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "d3f5c91a",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "761fe30c",
+                  "fields": [
+                    {
+                      "name": "daily(date_only)",
+                      "expression": "DATE_TRUNC(\"DAY\", `date_only`)"
+                    },
+                    {
+                      "name": "avg(temp)",
+                      "expression": "AVG(`temp`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "daily(date_only)",
+                  "scale": {
+                    "type": "temporal"
+                  },
+                  "displayName": "date_only"
+                },
+                "y": {
+                  "fieldName": "avg(temp)",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "Average temp"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 6,
+            "width": 3,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    }
+  }
+}
