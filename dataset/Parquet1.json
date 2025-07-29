@@ -10,6 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "Bike_Data",
+				"folderPath": "Bike_Raw_Data",
 				"container": "rawdata"
 			},
 			"compressionCodec": "snappy"

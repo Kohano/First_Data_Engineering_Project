@@ -1,5 +1,5 @@
 {
-	"name": "SourceDataset_lm5",
+	"name": "Bike_Data_Source",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Bike",

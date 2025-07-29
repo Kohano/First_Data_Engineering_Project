@@ -45,6 +45,158 @@
 						"mappings": [
 							{
 								"source": {
+									"path": "['dt']"
+								},
+								"sink": {
+									"name": "dt"
+								}
+							},
+							{
+								"source": {
+									"path": "['main']['temp']"
+								},
+								"sink": {
+									"name": "temp"
+								}
+							},
+							{
+								"source": {
+									"path": "['main']['feels_like']"
+								},
+								"sink": {
+									"name": "feels_like"
+								}
+							},
+							{
+								"source": {
+									"path": "['main']['temp_min']"
+								},
+								"sink": {
+									"name": "temp_min"
+								}
+							},
+							{
+								"source": {
+									"path": "['main']['temp_max']"
+								},
+								"sink": {
+									"name": "temp_max"
+								}
+							},
+							{
+								"source": {
+									"path": "['main']['pressure']"
+								},
+								"sink": {
+									"name": "pressure"
+								}
+							},
+							{
+								"source": {
+									"path": "['main']['sea_level']"
+								},
+								"sink": {
+									"name": "sea_level"
+								}
+							},
+							{
+								"source": {
+									"path": "['main']['grnd_level']"
+								},
+								"sink": {
+									"name": "grnd_level"
+								}
+							},
+							{
+								"source": {
+									"path": "['main']['humidity']"
+								},
+								"sink": {
+									"name": "humidity"
+								}
+							},
+							{
+								"source": {
+									"path": "['main']['temp_kf']"
+								},
+								"sink": {
+									"name": "temp_kf"
+								}
+							},
+							{
+								"source": {
+									"path": "['clouds']['all']"
+								},
+								"sink": {
+									"name": "all"
+								}
+							},
+							{
+								"source": {
+									"path": "['wind']['speed']"
+								},
+								"sink": {
+									"name": "speed"
+								}
+							},
+							{
+								"source": {
+									"path": "['wind']['deg']"
+								},
+								"sink": {
+									"name": "deg"
+								}
+							},
+							{
+								"source": {
+									"path": "['wind']['gust']"
+								},
+								"sink": {
+									"name": "gust"
+								}
+							},
+							{
+								"source": {
+									"path": "['visibility']"
+								},
+								"sink": {
+									"name": "visibility"
+								}
+							},
+							{
+								"source": {
+									"path": "['pop']"
+								},
+								"sink": {
+									"name": "pop"
+								}
+							},
+							{
+								"source": {
+									"path": "['rain']['3h']"
+								},
+								"sink": {
+									"name": "3h"
+								}
+							},
+							{
+								"source": {
+									"path": "['sys']['pod']"
+								},
+								"sink": {
+									"name": "pod"
+								}
+							},
+							{
+								"source": {
+									"path": "['dt_txt']"
+								},
+								"sink": {
+									"name": "dt_txt"
+								}
+							},
+							{
+								"source": {
 									"path": "$['cod']"
 								},
 								"sink": {
@@ -65,182 +217,6 @@
 								},
 								"sink": {
 									"name": "cnt"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['dt']"
-								},
-								"sink": {
-									"name": "dt"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['main']['temp']"
-								},
-								"sink": {
-									"name": "temp"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['main']['feels_like']"
-								},
-								"sink": {
-									"name": "feels_like"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['main']['temp_min']"
-								},
-								"sink": {
-									"name": "temp_min"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['main']['temp_max']"
-								},
-								"sink": {
-									"name": "temp_max"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['main']['pressure']"
-								},
-								"sink": {
-									"name": "pressure"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['main']['sea_level']"
-								},
-								"sink": {
-									"name": "sea_level"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['main']['grnd_level']"
-								},
-								"sink": {
-									"name": "grnd_level"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['main']['humidity']"
-								},
-								"sink": {
-									"name": "humidity"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['main']['temp_kf']"
-								},
-								"sink": {
-									"name": "temp_kf"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['weather'][0]['id']"
-								},
-								"sink": {
-									"name": "list'][0]['weather'][0]['id"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['weather'][0]['main']"
-								},
-								"sink": {
-									"name": "main"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['weather'][0]['description']"
-								},
-								"sink": {
-									"name": "description"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['weather'][0]['icon']"
-								},
-								"sink": {
-									"name": "icon"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['clouds']['all']"
-								},
-								"sink": {
-									"name": "all"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['wind']['speed']"
-								},
-								"sink": {
-									"name": "speed"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['wind']['deg']"
-								},
-								"sink": {
-									"name": "deg"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['wind']['gust']"
-								},
-								"sink": {
-									"name": "gust"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['visibility']"
-								},
-								"sink": {
-									"name": "visibility"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['pop']"
-								},
-								"sink": {
-									"name": "pop"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['sys']['pod']"
-								},
-								"sink": {
-									"name": "pod"
-								}
-							},
-							{
-								"source": {
-									"path": "$['list'][0]['dt_txt']"
-								},
-								"sink": {
-									"name": "dt_txt"
 								}
 							},
 							{
@@ -321,7 +297,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "SourceDataset_zbm",
+						"referenceName": "Weather_Data_Source",
 						"type": "DatasetReference"
 					}
 				],

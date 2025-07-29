@@ -1,5 +1,5 @@
 {
-	"name": "SourceDataset_zbm",
+	"name": "Weather_Data_Source",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Weather",
