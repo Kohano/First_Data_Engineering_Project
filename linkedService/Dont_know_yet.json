@@ -9,7 +9,7 @@
 		"annotations": [],
 		"type": "HttpServer",
 		"typeProperties": {
-			"url": "@{linkedService().URL_for_Bike}",
+			"url": "@{concat('https://data.citybik.es/dumps/by-network/', formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyy'), '/', formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyyMM'), '-velib-stats.parquet')\n}",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
