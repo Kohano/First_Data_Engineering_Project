@@ -1,6 +1,181 @@
 {
 	"name": "Historical_data_Weather",
 	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"supportRFC5988": "true"
+						}
+					},
+					"sink": {
+						"type": "ParquetSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings",
+							"copyBehavior": "FlattenHierarchy"
+						},
+						"formatSettings": {
+							"type": "ParquetWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "['dt']"
+								},
+								"sink": {
+									"name": "dt"
+								}
+							},
+							{
+								"source": {
+									"path": "['main']['temp']"
+								},
+								"sink": {
+									"name": "temp"
+								}
+							},
+							{
+								"source": {
+									"path": "['main']['feels_like']"
+								},
+								"sink": {
+									"name": "feels_like"
+								}
+							},
+							{
+								"source": {
+									"path": "['main']['pressure']"
+								},
+								"sink": {
+									"name": "pressure"
+								}
+							},
+							{
+								"source": {
+									"path": "['main']['humidity']"
+								},
+								"sink": {
+									"name": "humidity"
+								}
+							},
+							{
+								"source": {
+									"path": "['main']['temp_min']"
+								},
+								"sink": {
+									"name": "temp_min"
+								}
+							},
+							{
+								"source": {
+									"path": "['main']['temp_max']"
+								},
+								"sink": {
+									"name": "temp_max"
+								}
+							},
+							{
+								"source": {
+									"path": "['wind']['speed']"
+								},
+								"sink": {
+									"name": "speed"
+								}
+							},
+							{
+								"source": {
+									"path": "['wind']['deg']"
+								},
+								"sink": {
+									"name": "deg"
+								}
+							},
+							{
+								"source": {
+									"path": "['clouds']['all']"
+								},
+								"sink": {
+									"name": "all"
+								}
+							},
+							{
+								"source": {
+									"path": "$['message']"
+								},
+								"sink": {
+									"name": "message"
+								}
+							},
+							{
+								"source": {
+									"path": "$['cod']"
+								},
+								"sink": {
+									"name": "cod"
+								}
+							},
+							{
+								"source": {
+									"path": "$['city_id']"
+								},
+								"sink": {
+									"name": "city_id"
+								}
+							},
+							{
+								"source": {
+									"path": "$['calctime']"
+								},
+								"sink": {
+									"name": "calctime"
+								}
+							},
+							{
+								"source": {
+									"path": "$['cnt']"
+								},
+								"sink": {
+									"name": "cnt"
+								}
+							}
+						],
+						"collectionReference": "$['list']"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Historical_Weather_Data",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "Historical_Weather_Data_Sink",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
 		"annotations": []
 	}
 }
