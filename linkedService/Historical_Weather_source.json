@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://history.openweathermap.org/data/2.5/history/city?q=Paris,FR&type=hour&start=1748728800&cnt=720&appid=4238050112f5912b8eeff246ff8984d0",
+			"url": "@{concat(\n  'https://history.openweathermap.org/data/2.5/history/city?q=Paris,FR&type=hour&start=',\n  string(div(ticks(addDays(utcNow(), -30)), 10000000)),\n  '&cnt=720&appid=4238050112f5912b8eeff246ff8984d0'\n)\n}",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
