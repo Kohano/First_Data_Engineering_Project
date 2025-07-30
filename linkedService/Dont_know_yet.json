@@ -1,10 +1,15 @@
 {
 	"name": "Dont_know_yet",
 	"properties": {
+		"parameters": {
+			"URL_for_Bike": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "HttpServer",
 		"typeProperties": {
-			"url": "@{concat('https://data.citybik.es/dumps/by-network/',\n  formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyy'),\n  '/', formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyyMM'),\n  '-velib-stats.parquet')\n}",
+			"url": "@{linkedService().URL_for_Bike}",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
