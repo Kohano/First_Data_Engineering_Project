@@ -1,11 +1,6 @@
 {
 	"name": "Dont_know_yet",
 	"properties": {
-		"parameters": {
-			"URL_for_Bike": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "HttpServer",
 		"typeProperties": {
