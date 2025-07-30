@@ -1,0 +1,12 @@
+{
+	"name": "Bike_Historical_Link_Service",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "@{concat('https://data.citybik.es/dumps/by-network/',\n  formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyy'),\n  '/', formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyyMM'),\n  '-velib-stats.parquet')\n}",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
