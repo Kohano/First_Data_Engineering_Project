@@ -303,7 +303,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DestinationDataset_zbm",
+						"referenceName": "Weather_data_Sink",
 						"type": "DatasetReference"
 					}
 				]

@@ -1,5 +1,5 @@
 {
-	"name": "Parquet1",
+	"name": "Bike_Data_Sink",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "bronze",

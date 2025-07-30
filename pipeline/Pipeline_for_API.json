@@ -188,7 +188,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Parquet1",
+						"referenceName": "Bike_Data_Sink",
 						"type": "DatasetReference"
 					}
 				]

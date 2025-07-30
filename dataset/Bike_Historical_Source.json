@@ -1,0 +1,16 @@
+{
+	"name": "Bike_Historical_Source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Dont_know_yet",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			}
+		}
+	}
+}
