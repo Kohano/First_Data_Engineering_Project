@@ -8,7 +8,8 @@
 				"BaseURL": {
 					"value": "https://data.citybik.es/",
 					"type": "Expression"
-				}
+				},
+				"pathSuffix": "@concat(   'dumps/by-network/',   formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyy'),   '/',   formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyyMM'),   '-velib-stats.parquet' )"
 			}
 		},
 		"parameters": {

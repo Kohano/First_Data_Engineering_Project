@@ -3,12 +3,15 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Historical_Weather_source",
-			"type": "LinkedServiceReference"
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"BaseURL": "https://history.openweathermap.org/"
+			}
 		},
 		"parameters": {
 			"pathSuffix": {
 				"type": "string",
-				"defaultValue": "@concat(   'data/2.5/history/city?q=Paris,FR&type=hour&start=',   string(div(ticks(addDays(utcNow(), -30)), 10000000)),   '&cnt=720&appid=4238050112f5912b8eeff246ff8984d0' )"
+				"defaultValue": "@concat('data/2.5/history/city?q=Paris,FR&type=hour&start=',string(div(ticks(startOfMonth(addDays(utcNow(), -30))), 10000000)), '&end=',string(div(ticks(addSeconds(addDays(startOfMonth(utcNow()), -1), 86399)), 10000000)),   '&appid=4238050112f5912b8eeff246ff8984d0' )"
 			}
 		},
 		"annotations": [],
