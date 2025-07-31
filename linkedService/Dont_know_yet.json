@@ -5,6 +5,9 @@
 			"BaseURL": {
 				"type": "string",
 				"defaultValue": "https://data.citybik.es/"
+			},
+			"pathSuffix": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
