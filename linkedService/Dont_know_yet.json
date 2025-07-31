@@ -1,6 +1,11 @@
 {
 	"name": "Dont_know_yet",
 	"properties": {
+		"parameters": {
+			"BaseURL": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "HttpServer",
 		"typeProperties": {
