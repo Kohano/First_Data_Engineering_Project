@@ -3,7 +3,8 @@
 	"properties": {
 		"parameters": {
 			"BaseURL": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "https://data.citybik.es/"
 			}
 		},
 		"annotations": [],
