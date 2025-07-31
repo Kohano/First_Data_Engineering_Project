@@ -14,7 +14,7 @@
 		"annotations": [],
 		"type": "HttpServer",
 		"typeProperties": {
-			"url": "@{linkedService().pathSuffix}",
+			"url": "@{linkedService().BaseURL}",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
