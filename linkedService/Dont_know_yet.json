@@ -7,7 +7,8 @@
 				"defaultValue": "https://data.citybik.es/"
 			},
 			"pathSuffix": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "@concat(   'dumps/by-network/',   formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyy'),   '/',   formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyyMM'),   '-velib-stats.parquet' )"
 			}
 		},
 		"annotations": [],
