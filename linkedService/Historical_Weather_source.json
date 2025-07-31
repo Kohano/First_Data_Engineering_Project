@@ -5,10 +5,6 @@
 			"BaseURL": {
 				"type": "string",
 				"defaultValue": "https://history.openweathermap.org/"
-			},
-			"Pathsuffix": {
-				"type": "string",
-				"defaultValue": "@concat('data/2.5/history/city?q=Paris,FR&type=hour&start=',string(div(ticks(startOfMonth(addMonths(utcNow(), -1))), 10000000)), '&end=',string(div(ticks(addSeconds(addDays(startOfMonth(utcNow()), -1), 86399)), 10000000)),   '&appid=4238050112f5912b8eeff246ff8984d0' )"
 			}
 		},
 		"annotations": [],
