@@ -5,8 +5,20 @@
 			"referenceName": "Historical_Weather_source",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"pathSuffix": {
+				"type": "string",
+				"defaultValue": "@concat(   'data/2.5/history/city?q=Paris,FR&type=hour&start=',   string(div(ticks(addDays(utcNow(), -30)), 10000000)),   '&cnt=720&appid=4238050112f5912b8eeff246ff8984d0' )"
+			}
+		},
 		"annotations": [],
 		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "@dataset().pathSuffix",
+				"type": "Expression"
+			}
+		},
 		"schema": []
 	}
 }
