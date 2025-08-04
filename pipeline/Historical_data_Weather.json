@@ -157,6 +157,22 @@
 								"sink": {
 									"name": "cnt"
 								}
+							},
+							{
+								"source": {
+									"path": "['weather'][0]['main']"
+								},
+								"sink": {
+									"name": "main"
+								}
+							},
+							{
+								"source": {
+									"path": "['weather'][0]['description']"
+								},
+								"sink": {
+									"name": "description"
+								}
 							}
 						],
 						"collectionReference": "$['list']"
@@ -165,7 +181,10 @@
 				"inputs": [
 					{
 						"referenceName": "Historical_Weather_Data",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"pathSuffix": "@concat('data/2.5/history/city?q=Paris,FR&type=hour&start=',string(div(ticks(startOfMonth(addDays(utcNow(), -30))), 10000000)), '&end=',string(div(ticks(addSeconds(addDays(startOfMonth(utcNow()), -1), 86399)), 10000000)),   '&appid=4238050112f5912b8eeff246ff8984d0' )"
+						}
 					}
 				],
 				"outputs": [

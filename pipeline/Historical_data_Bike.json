@@ -36,7 +36,10 @@
 				"inputs": [
 					{
 						"referenceName": "Bike_Historical_Source",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"PAtheffix": "@concat(   'dumps/by-network/',   formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyy'),   '/',   formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyyMM'),   '-velib-stats.parquet' )"
+						}
 					}
 				],
 				"outputs": [

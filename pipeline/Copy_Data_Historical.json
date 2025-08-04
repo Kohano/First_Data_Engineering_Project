@@ -165,7 +165,10 @@
 				"inputs": [
 					{
 						"referenceName": "Historical_Weather_Data",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"pathSuffix": "@concat('data/2.5/history/city?q=Paris,FR&type=hour&start=',string(div(ticks(startOfMonth(addDays(utcNow(), -30))), 10000000)), '&end=',string(div(ticks(addSeconds(addDays(startOfMonth(utcNow()), -1), 86399)), 10000000)),   '&appid=4238050112f5912b8eeff246ff8984d0' )"
+						}
 					}
 				],
 				"outputs": [
@@ -209,7 +212,10 @@
 				"inputs": [
 					{
 						"referenceName": "Bike_Historical_Source",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"PAtheffix": "@concat(   'dumps/by-network/',   formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyy'),   '/',   formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyyMM'),   '-velib-stats.parquet' )"
+						}
 					}
 				],
 				"outputs": [
