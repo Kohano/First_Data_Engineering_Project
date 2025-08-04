@@ -1,16 +1,10 @@
 {
 	"name": "Historical_Weather_source",
 	"properties": {
-		"parameters": {
-			"BaseURL": {
-				"type": "string",
-				"defaultValue": "https://history.openweathermap.org/"
-			}
-		},
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "@{concat(\n  'https://history.openweathermap.org/data/2.5/history/city?q=Paris,FR&type=hour&start=',\n  string(div(ticks(addDays(startOfMonth(utcNow()),dayOfMonth(utcNow()))), 10000000)),\n  '&end=',\n  string(div(ticks(addSeconds(addDays(startOfMonth(utcNow()), -1), 86399)), 10000000)),\n  '&appid=4238050112f5912b8eeff246ff8984d0',\n)\n\n}",
+			"url": "https://history.openweathermap.org/data/2.5/history/city?q=Paris,FR&type=hour&start=1751932800&end=1754044799&appid=4238050112f5912b8eeff246ff8984d0",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
