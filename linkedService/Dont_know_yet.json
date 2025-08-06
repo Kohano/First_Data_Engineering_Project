@@ -14,7 +14,7 @@
 		"annotations": [],
 		"type": "HttpServer",
 		"typeProperties": {
-			"url": "https://data.citybik.es/'dumps/by-network/2025/202503-velib-stats.parquet",
+			"url": "https://data.citybik.es/'dumps/by-network/2025/202503-velib-stats.parquet/",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
