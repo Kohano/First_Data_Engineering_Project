@@ -1,0 +1,12 @@
+{
+	"name": "4Week",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://history.openweathermap.org/data/2.5/history/city?q=Paris,FR&type=hour&start=1753477200&end=1754078400&units=metric&appid=4238050112f5912b8eeff246ff8984d0",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
