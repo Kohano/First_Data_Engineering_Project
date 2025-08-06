@@ -12,21 +12,11 @@
 				"pathSuffix": "@concat(   'dumps/by-network/',   formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyy'),   '/',   formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyyMM'),   '-velib-stats.parquet' )"
 			}
 		},
-		"parameters": {
-			"PAtheffix": {
-				"type": "string",
-				"defaultValue": "@concat(   'dumps/by-network/',   formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyy'),   '/',   formatDateTime(addDays(startOfMonth(utcNow()), -1), 'yyyyMM'),   '-velib-stats.parquet' )"
-			}
-		},
 		"annotations": [],
 		"type": "Binary",
 		"typeProperties": {
 			"location": {
-				"type": "HttpServerLocation",
-				"relativeUrl": {
-					"value": "@dataset().PAtheffix",
-					"type": "Expression"
-				}
+				"type": "HttpServerLocation"
 			}
 		}
 	}
