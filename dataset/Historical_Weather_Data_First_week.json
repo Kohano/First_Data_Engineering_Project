@@ -1,12 +1,9 @@
 {
-	"name": "Historical_Weather_Data",
+	"name": "Historical_Weather_Data_First_week",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "Historical_Weather_source",
-			"type": "LinkedServiceReference",
-			"parameters": {
-				"BaseURL": "https://history.openweathermap.org/"
-			}
+			"type": "LinkedServiceReference"
 		},
 		"parameters": {
 			"pathSuffix": {

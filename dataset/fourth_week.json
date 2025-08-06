@@ -1,0 +1,12 @@
+{
+	"name": "fourth_week",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "4Week",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}

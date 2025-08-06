@@ -1,5 +1,5 @@
 {
-	"name": "Historical_Weather_Data_Sink",
+	"name": "3week",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "bronze",
@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "Weather_Historical_Data1",
+				"fileName": "Weather_Historical_Data3",
 				"folderPath": "Weather_Historical_Raw_Data",
 				"container": "rawdata"
 			},
