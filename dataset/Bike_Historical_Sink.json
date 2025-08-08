@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "Bike_Histroical_data",
+				"fileName": "Bike_Histroical_data1",
 				"folderPath": "Bike_Historical_Raw_Data",
 				"container": "rawdata"
 			}
