@@ -1,171 +1,56 @@
 {
   "datasets": [
     {
-      "name": "761fe30c",
-      "displayName": "bike_weather_combined",
+      "name": "45a8a5dd",
+      "displayName": "hourly_ridership_per_station",
       "queryLines": [
-        "SELECT * FROM new_transformer.gold.bike_weather_combined"
-      ],
-      "catalog": "new_transformer",
-      "schema": "gold"
+        "SELECT * FROM data_transformation.gold.hourly_ridership_per_station"
+      ]
+    },
+    {
+      "name": "52230e70",
+      "displayName": "refined_weather_data",
+      "queryLines": [
+        "SELECT * FROM data_transformation.gold.refined_weather_data"
+      ]
+    },
+    {
+      "name": "15371119",
+      "displayName": "for_graph",
+      "queryLines": [
+        "SELECT * FROM data_transformation.gold.for_graph"
+      ]
     }
   ],
   "pages": [
     {
       "name": "513f452c",
-      "displayName": "Untitled page",
+      "displayName": "Weather and Bike Graph",
       "layout": [
         {
           "widget": {
-            "name": "796e09ee",
+            "name": "aac35b6c",
             "queries": [
               {
                 "name": "main_query",
                 "query": {
-                  "datasetName": "761fe30c",
+                  "datasetName": "45a8a5dd",
                   "fields": [
                     {
-                      "name": "bike_station_name",
-                      "expression": "`bike_station_name`"
+                      "name": "date",
+                      "expression": "`date`"
                     },
                     {
-                      "name": "latitude",
-                      "expression": "`latitude`"
+                      "name": "avg(max_free_bikes)",
+                      "expression": "AVG(`max_free_bikes`)"
                     },
                     {
-                      "name": "longitude",
-                      "expression": "`longitude`"
+                      "name": "avg(min_free_bikes)",
+                      "expression": "AVG(`min_free_bikes`)"
                     },
                     {
-                      "name": "renting",
-                      "expression": "`renting`"
-                    },
-                    {
-                      "name": "max(normal_bikes)",
-                      "expression": "MAX(`normal_bikes`)"
-                    }
-                  ],
-                  "disaggregated": false
-                }
-              }
-            ],
-            "spec": {
-              "version": 2,
-              "widgetType": "symbol-map",
-              "encodings": {
-                "coordinates": {
-                  "latitude": {
-                    "fieldName": "latitude",
-                    "displayName": "latitude"
-                  },
-                  "longitude": {
-                    "fieldName": "longitude",
-                    "displayName": "longitude"
-                  }
-                },
-                "color": {
-                  "fieldName": "bike_station_name",
-                  "scale": {
-                    "type": "categorical"
-                  },
-                  "displayName": "bike_station_name"
-                },
-                "size": {
-                  "fieldName": "max(normal_bikes)",
-                  "scale": {
-                    "type": "quantitative"
-                  },
-                  "displayName": "Maximum normal_bikes"
-                },
-                "extra": [
-                  {
-                    "fieldName": "renting",
-                    "displayName": "renting"
-                  }
-                ]
-              },
-              "frame": {
-                "showDescription": false,
-                "title": "Bike and Weather Data Point Map",
-                "showTitle": true
-              }
-            }
-          },
-          "position": {
-            "x": 0,
-            "y": 0,
-            "width": 3,
-            "height": 6
-          }
-        },
-        {
-          "widget": {
-            "name": "40f41e2a",
-            "queries": [
-              {
-                "name": "main_query",
-                "query": {
-                  "datasetName": "761fe30c",
-                  "fields": [
-                    {
-                      "name": "bike_station_name",
-                      "expression": "`bike_station_name`"
-                    },
-                    {
-                      "name": "country",
-                      "expression": "`country`"
-                    }
-                  ],
-                  "disaggregated": false
-                }
-              }
-            ],
-            "spec": {
-              "version": 1,
-              "widgetType": "choropleth-map",
-              "encodings": {
-                "color": {
-                  "fieldName": "bike_station_name",
-                  "scale": {
-                    "type": "categorical"
-                  },
-                  "displayName": "bike_station_name"
-                },
-                "region": {
-                  "regionType": "mapbox-v4-admin",
-                  "admin0": {
-                    "fieldName": "country",
-                    "type": "field",
-                    "geographicRole": "admin0-unit-code",
-                    "displayName": "country"
-                  }
-                }
-              }
-            }
-          },
-          "position": {
-            "x": 3,
-            "y": 0,
-            "width": 3,
-            "height": 6
-          }
-        },
-        {
-          "widget": {
-            "name": "d3f5c91a",
-            "queries": [
-              {
-                "name": "main_query",
-                "query": {
-                  "datasetName": "761fe30c",
-                  "fields": [
-                    {
-                      "name": "daily(date_only)",
-                      "expression": "DATE_TRUNC(\"DAY\", `date_only`)"
-                    },
-                    {
-                      "name": "avg(temp)",
-                      "expression": "AVG(`temp`)"
+                      "name": "avg(total_capacity)",
+                      "expression": "AVG(`total_capacity`)"
                     }
                   ],
                   "disaggregated": false
@@ -174,30 +59,154 @@
             ],
             "spec": {
               "version": 3,
-              "widgetType": "bar",
+              "widgetType": "line",
               "encodings": {
                 "x": {
-                  "fieldName": "daily(date_only)",
+                  "fieldName": "date",
                   "scale": {
-                    "type": "temporal"
+                    "type": "categorical"
                   },
-                  "displayName": "date_only"
+                  "displayName": "date"
                 },
                 "y": {
-                  "fieldName": "avg(temp)",
                   "scale": {
                     "type": "quantitative"
                   },
-                  "displayName": "Average temp"
+                  "fields": [
+                    {
+                      "fieldName": "avg(max_free_bikes)",
+                      "displayName": "Average max_free_bikes"
+                    },
+                    {
+                      "fieldName": "avg(min_free_bikes)",
+                      "displayName": "Average min_free_bikes"
+                    },
+                    {
+                      "fieldName": "avg(total_capacity)",
+                      "displayName": "Average total_capacity"
+                    }
+                  ]
                 }
               }
             }
           },
           "position": {
-            "x": 3,
-            "y": 6,
-            "width": 3,
+            "x": 0,
+            "y": 0,
+            "width": 6,
+            "height": 7
+          }
+        },
+        {
+          "widget": {
+            "name": "cf3126a9",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "52230e70",
+                  "fields": [
+                    {
+                      "name": "date",
+                      "expression": "`date`"
+                    },
+                    {
+                      "name": "temprature",
+                      "expression": "`temprature`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "date",
+                  "scale": {
+                    "type": "temporal"
+                  },
+                  "displayName": "date"
+                },
+                "y": {
+                  "fieldName": "temprature",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "temprature"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 7,
+            "width": 6,
             "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "90f7793f",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "15371119",
+                  "fields": [
+                    {
+                      "name": "daily(date)",
+                      "expression": "DATE_TRUNC(\"DAY\", `date`)"
+                    },
+                    {
+                      "name": "avg(avg_free_bikes)",
+                      "expression": "AVG(`avg_free_bikes`)"
+                    },
+                    {
+                      "name": "avg(temprature)",
+                      "expression": "AVG(`temprature`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "daily(date)",
+                  "scale": {
+                    "type": "temporal"
+                  },
+                  "displayName": "date"
+                },
+                "y": {
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "fields": [
+                    {
+                      "fieldName": "avg(avg_free_bikes)",
+                      "displayName": "Average avg_free_bikes"
+                    },
+                    {
+                      "fieldName": "avg(temprature)",
+                      "displayName": "Average temprature"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 13,
+            "width": 6,
+            "height": 7
           }
         }
       ],
