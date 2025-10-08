@@ -1,0 +1,9 @@
+{
+	"name": "SchoolProjectV1",
+	"location": "germanywestcentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "ea8d17b8-cb73-409c-9b62-8cf733dddfd7",
+		"tenantId": "e871756f-ec38-47cb-97bb-83c7310054d5"
+	}
+}
